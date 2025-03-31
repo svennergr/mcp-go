@@ -94,7 +94,7 @@ func (c *SSEMCPClient) Start(ctx context.Context) error {
 	req.Header.Set("Cache-Control", "no-cache")
 	req.Header.Set("Connection", "keep-alive")
 
-	resp, err := c.httpClient.Do(req)
+	resp, err := c.HttpClient.Do(req)
 	if err != nil {
 		return fmt.Errorf("failed to connect to SSE stream: %w", err)
 	}
@@ -306,7 +306,7 @@ func (c *SSEMCPClient) sendRequest(
 		req.Header.Set(k, v)
 	}
 
-	resp, err := c.httpClient.Do(req)
+	resp, err := c.HttpClient.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to send request: %w", err)
 	}
@@ -392,7 +392,7 @@ func (c *SSEMCPClient) Initialize(
 
 	req.Header.Set("Content-Type", "application/json")
 
-	resp, err := c.httpClient.Do(req)
+	resp, err := c.HttpClient.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf(
 			"failed to send initialized notification: %w",
