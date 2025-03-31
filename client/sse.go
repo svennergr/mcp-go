@@ -25,7 +25,7 @@ import (
 type SSEMCPClient struct {
 	baseURL        *url.URL
 	endpoint       *url.URL
-	httpClient     *http.Client
+ 	HttpClient     *http.Client
 	requestID      atomic.Int64
 	responses      map[int64]chan RPCResponse
 	mu             sync.RWMutex
@@ -63,7 +63,7 @@ func NewSSEMCPClient(baseURL string, options ...ClientOption) (*SSEMCPClient, er
 
 	smc := &SSEMCPClient{
 		baseURL:        parsedURL,
-		httpClient:     &http.Client{},
+		HttpClient:     &http.Client{},
 		responses:      make(map[int64]chan RPCResponse),
 		done:           make(chan struct{}),
 		endpointChan:   make(chan struct{}),
