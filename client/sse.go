@@ -178,6 +178,7 @@ func (c *SSEMCPClient) readSSE(reader io.ReadCloser) {
 // handleSSEEvent processes SSE events based on their type.
 // Handles 'endpoint' events for connection setup and 'message' events for JSON-RPC communication.
 func (c *SSEMCPClient) handleSSEEvent(event, data string) {
+	fmt.Printf("Event: %s, Data: %s", event, data)
 	switch event {
 	case "endpoint":
 		endpoint, err := c.baseURL.Parse(data)
@@ -531,6 +532,7 @@ func (c *SSEMCPClient) CallTool(
 		return nil, err
 	}
 
+	fmt.Printf("Response: %v, Raw: %s", response, response)
 	return mcp.ParseCallToolResult(response)
 }
 
